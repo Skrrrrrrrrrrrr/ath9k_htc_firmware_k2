@@ -1,0 +1,107 @@
+@startuml
+scale 4096*2160
+
+object WMI_DISPATCH_TABLE{
+	..
+
+}
+
+object WMI_DISPATCH_ENTRY{
+
+}
+
+object WMI_CMD_HANDLER{
+
+}
+
+
+
+
+
+object Magpie_Sys_Commands_Tbl{
+	..
+	type.		struct{member}example
+	..
+	proto		WMI_DISPATCH_TABLE	
+	..
+	key_member	{int NumberOfEntries, WMI_DISPATCH_ENTRY *pTable, ...}
+	..
+	}
+
+Magpie_Sys_Commands_Tbl --> Magpie_Sys_DispatchEntries
+
+object Magpie_Sys_DispatchEntries{
+	..
+	type.		array[member] example
+	..
+	proto		WMI_DISPATCH_ENTRY	
+	..
+	member		[struct WMI_DISPATCH_ENTRY:{pCmdHandler, CmdID, CheckLength}]
+	..
+	key_member	{ath_aborttx_dma_tgt, WMI_ABORT_TX_DMA_CMDID, 0}
+	..
+
+}
+
+Magpie_Sys_DispatchEntries --> ath_aborttx_dma_tgt
+
+object ath_aborttx_dma_tgt{
+	..
+	type		function(parameter)
+	..
+}
+
+object ath_hal{
+	..
+	type		struct{member}
+	..
+}
+
+object ar5416hal_10{
+	..
+	type			struct
+	..
+	proto		ath_hal_private
+	..
+	key_mem		ath_hal.ah_abortTxDma
+	..
+}
+
+object ah_abortTxDma{
+	..
+	type		function(parameter)
+	..
+}
+
+object ar5416AbortTxDma{
+	..
+	type		function(parameter)
+	..
+}
+
+object OS_REG_SET_BIT{
+	..
+	type		function(parameter)
+	..
+}
+object AR_D_GBL_IFS_MISC_IGNORE_BACKOFF{
+	..
+	type.	macro
+	..
+	desc		Ignore backoff
+	..
+}
+object iowrite32_mac{
+	..
+	type		function(parameter)
+	..
+}
+
+ath_aborttx_dma_tgt --> ar5416hal_10
+ar5416hal_10 --> ath_hal
+ath_hal --> ah_abortTxDma
+ah_abortTxDma --> ar5416AbortTxDma
+ar5416AbortTxDma --> OS_REG_SET_BIT
+OS_REG_SET_BIT --> AR_D_GBL_IFS_MISC_IGNORE_BACKOFF
+@enduml
+	

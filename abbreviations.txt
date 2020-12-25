@@ -1,0 +1,58 @@
+#Modified by JT
+#WARNING: THE ABBR. MENTIONED IN THIS FILE MAYBE ARE NOT CORRECT IN OTHER CONTEXT!
+#PREFIX_PATH: ./target_firmware/
+
+1 [wlan/ah.h]
+	ah	ath_hal		atheros hardware abstract layer
+
+2 [***]
+	desc	descriptor?/description?
+
+3 [wlan/include/wlan_hdr.h]
+	hdr	header/...
+
+4 [wlan/if_ath.c (wmi_cmd_rsp)]
+	rsp	response
+
+5 [wlan/if_ath.c (adf_nbuf_t)]
+	nbuf	netbuff
+
+
+########Index########
+Initial	abbr.	No.
+A
+	ah	1
+B
+C
+D
+	desc	*
+E
+F
+G
+H
+	hdr	3
+I
+J
+K
+L
+M
+N
+	nbuf	5
+O
+P
+Q
+R
+	rsp	4
+S
+T
+U
+V
+W
+X
+Y
+Z
+
+ah
+desc
+hdr
+rsp
